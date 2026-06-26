@@ -145,3 +145,30 @@
 .fn-footer .fn-navlinks { justify-content: flex-start; flex-wrap: wrap; margin-bottom: 18px; }
 .fn-footer a { color: var(--fn-gray); text-decoration: none; }
 .fn-footer a:hover { color: var(--fn-ink); }
+
+/* prose / article pages (About, Retreats, Field Assessment) */
+.fn-article { padding: 40px 0 0; }
+.fn-article h1 { font-family: var(--fn-sans); font-weight: 600; font-size: 40px; line-height: 1.12; letter-spacing: -1px; margin: 0 0 28px; }
+.fn-article h2 { font-family: var(--fn-sans); font-weight: 600; font-size: 15.3px; letter-spacing: 1.53px; text-transform: uppercase; color: var(--fn-gray); margin: 52px 0 16px; }
+.fn-article h3 { font-family: var(--fn-sans); font-weight: 600; font-size: 19px; margin: 36px 0 10px; }
+.fn-article p { margin: 0 0 24px; }
+.fn-article a { color: var(--fn-accent); text-decoration: underline; text-underline-offset: 2px; }
+.fn-article ul { margin: 0 0 24px; padding-left: 20px; }
+.fn-article li { margin: 0 0 8px; }
+.fn-lead { font-size: 22px; color: var(--fn-gray); font-style: italic; margin: 0 0 32px; }
+
+/* Field Notes (blog) index */
+.fn-bloglist { list-style: none; padding: 0; margin: 0; }
+.fn-bloglist li { padding: 26px 0; border-top: 1px solid var(--fn-rule); }
+.fn-bloglist li:first-child { border-top: 0; }
+.fn-bloglist h3 { font-family: var(--fn-sans); font-weight: 600; font-size: 23px; line-height: 1.25; margin: 6px 0 0; }
+.fn-bloglist a { color: var(--fn-ink); text-decoration: none; }
+.fn-bloglist a:hover { color: var(--fn-accent); }
+.fn-postmeta { font-family: var(--fn-sans); font-size: 13px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--fn-gray); }
+.fn-bloglist p { color: var(--fn-gray); margin: 8px 0 0; }
+.fn-empty { color: var(--fn-gray); font-style: italic; padding: 16px 0; }
+
+/* footer social row */
+.fn-social { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 14px; }
+.fn-social a { font-family: var(--fn-sans); font-size: 13px; color: var(--fn-gray); text-decoration: none; }
+.fn-social a:hover { color: var(--fn-ink); }
