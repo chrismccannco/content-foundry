@@ -13,17 +13,40 @@ export async function GET(_req: NextRequest) {
       if (row.key && row.value) s[row.key as string] = row.value as string;
     }
 
+    // Helper: use the tenant value if set, else fall back to the next candidate.
+    const v = (key: string, fallback: string) => s[key] || fallback;
+
+    const primary = v('brand_primary', '#1B3A5C');
+    const accent = v('brand_accent', '#b8955a');
+    const background = v('brand_background', '#f5f2eb');
+    const neutral = v('brand_neutral', '#1a1a18');
+    const secondary = v('brand_secondary', '#8a8a80');
+
     const css = `:root {
-  /* Brand colors — edit in ContentStudio Brand Hub */
-  --brand-primary:    ${s.brand_primary    || '#000000'};
-  --brand-secondary:  ${s.brand_secondary  || '#000000'};
-  --brand-accent:     ${s.brand_accent     || '#000000'};
-  --brand-neutral:    ${s.brand_neutral    || '#111827'};
-  --brand-background: ${s.brand_background || '#ffffff'};
+  /* Brand tokens — edit in the ContentFoundry Brand Hub (site_settings brand_*) */
+  --brand-primary:        ${primary};
+  --brand-primary-deep:   ${v('brand_primary_deep', primary)};
+  --brand-primary-mid:    ${v('brand_primary_mid', primary)};
+  --brand-primary-light:  ${v('brand_primary_light', primary)};
+
+  --brand-accent:         ${accent};
+  --brand-accent-light:   ${v('brand_accent_light', accent)};
+  --brand-accent-wash:    ${v('brand_accent_wash', background)};
+
+  --brand-background:      ${background};
+  --brand-background-warm: ${v('brand_background_warm', background)};
+
+  --brand-neutral:         ${neutral};
+  --brand-secondary:       ${secondary};
+  --brand-secondary-light: ${v('brand_secondary_light', secondary)};
+  --brand-rule:            ${v('brand_rule', '#ddd8ce')};
 
   /* Typography */
-  --font-heading: '${s.brand_font_heading || 'Inter'}', sans-serif;
-  --font-body:    '${s.brand_font_body    || 'Inter'}', sans-serif;
+  --brand-font-heading: '${v('brand_font_heading', 'Fraunces')}', Georgia, serif;
+  --brand-font-body:    '${v('brand_font_body', 'DM Sans')}', -apple-system, sans-serif;
+
+  /* Layout */
+  --brand-max-width: ${v('brand_max_width', '1100px')};
 
   /* Logos */
   --logo-primary:  ${s.brand_logo_primary  ? `url('${s.brand_logo_primary}')` : 'none'};
