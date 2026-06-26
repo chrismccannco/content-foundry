@@ -70,3 +70,78 @@
     transform: translateY(0);
   }
 }
+
+/* =========================================================================
+   Field Notes theme layer (white-label, brand-token driven).
+   Tokens come from the inline <style> the root layout injects from
+   site_settings (brand_*), with these editorial defaults as fallback.
+   ========================================================================= */
+:root {
+  --fn-bg:        var(--brand-background, #faf9f7);
+  --fn-ink:       var(--brand-neutral, #1a1a1a);
+  --fn-gray:      var(--brand-secondary, #666666);
+  --fn-rule:      var(--brand-rule, #e8e6e2);
+  --fn-accent:    var(--brand-accent, #2C5F4F);
+  --fn-serif:     var(--brand-font-body, 'EB Garamond'), Georgia, serif;
+  --fn-sans:      var(--brand-font-heading, 'DM Sans'), -apple-system, sans-serif;
+  --fn-measure:   var(--brand-max-width, 620px);
+}
+
+.fn-site {
+  background: var(--fn-bg);
+  color: var(--fn-ink);
+  font-family: var(--fn-serif);
+  font-size: 18px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.fn-wrap { max-width: var(--fn-measure); margin: 0 auto; padding: 0 36px; }
+
+/* top nav */
+.fn-nav { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 28px 36px; }
+.fn-logo { width: 34px; height: 34px; background: var(--fn-ink); color: var(--fn-bg);
+  font-family: var(--fn-sans); font-weight: 600; font-size: 13px; letter-spacing: 0.5px;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.fn-navlinks { display: flex; gap: 26px; }
+.fn-navlinks a { font-family: var(--fn-sans); font-size: 15px; color: var(--fn-ink);
+  text-decoration: none; letter-spacing: 0.1px; }
+.fn-navlinks a:hover { color: var(--fn-accent); }
+
+/* hero */
+.fn-hero { padding: 54px 0 8px; }
+.fn-hero h1 { font-family: var(--fn-sans); font-weight: 600; font-size: 57.6px;
+  line-height: 1.05; letter-spacing: -1.728px; margin: 0 0 6px; text-transform: uppercase; }
+.fn-subhead { font-family: var(--fn-serif); font-style: italic; font-size: 24.3px;
+  line-height: 1.4; color: var(--fn-gray); margin: 0 0 36px; }
+.fn-eyebrow { font-family: var(--fn-sans); font-size: 14.4px; letter-spacing: 0.432px;
+  color: var(--fn-gray); margin: 0 0 18px; }
+
+/* newsletter */
+.fn-signup { display: flex; max-width: 420px; margin: 0 0 48px; border: 1px solid var(--fn-ink); }
+.fn-signup input { flex: 1; border: 0; padding: 14px 16px; font-family: var(--fn-sans);
+  font-size: 15px; background: transparent; color: var(--fn-ink); outline: none; }
+.fn-signup button { border: 0; background: var(--fn-ink); color: var(--fn-bg);
+  font-family: var(--fn-sans); font-weight: 600; font-size: 13px; letter-spacing: 1px;
+  padding: 0 22px; cursor: pointer; }
+
+/* body prose */
+.fn-prose p { margin: 0 0 24px; }
+.fn-prose a { color: var(--fn-accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* section eyebrow heading */
+.fn-section { margin-top: 64px; }
+.fn-section h2 { font-family: var(--fn-sans); font-weight: 600; font-size: 15.3px;
+  letter-spacing: 1.53px; text-transform: uppercase; color: var(--fn-gray); margin: 0 0 24px; }
+.fn-postlist { list-style: none; padding: 0; margin: 0; }
+.fn-postlist li { padding: 16px 0; border-top: 1px solid var(--fn-rule); }
+.fn-postlist a { color: var(--fn-ink); text-decoration: none; font-size: 20px; }
+.fn-postlist a:hover { color: var(--fn-accent); }
+.fn-more { font-family: var(--fn-sans); font-size: 14px; letter-spacing: 0.5px; }
+.fn-more a { color: var(--fn-accent); text-decoration: none; }
+
+/* footer */
+.fn-footer { margin-top: 96px; padding: 48px 0; border-top: 1px solid var(--fn-rule);
+  font-family: var(--fn-sans); font-size: 14px; color: var(--fn-gray); }
+.fn-footer .fn-navlinks { justify-content: flex-start; flex-wrap: wrap; margin-bottom: 18px; }
+.fn-footer a { color: var(--fn-gray); text-decoration: none; }
+.fn-footer a:hover { color: var(--fn-ink); }
