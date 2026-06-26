@@ -1,32 +1,41 @@
 @import "tailwindcss";
 
+/*
+ * White-label theme tokens.
+ * Each token falls back to the original ContentFoundry default, but defers to the
+ * brand variables emitted by /api/brand-css (driven by site_settings `brand_*`).
+ * This lets a tenant restyle the entire site from the Brand Hub with no code changes.
+ */
 @theme {
-  /* Navy family */
-  --color-forest-deep: #0D1B2A;
-  --color-forest: #1B3A5C;
-  --color-forest-mid: #2B5EA7;
-  --color-forest-light: #4A90C4;
+  /* Primary family (was "forest" navy) — driven by brand_primary */
+  --color-forest-deep: var(--brand-primary-deep, #0D1B2A);
+  --color-forest: var(--brand-primary, #1B3A5C);
+  --color-forest-mid: var(--brand-primary-mid, #2B5EA7);
+  --color-forest-light: var(--brand-primary-light, #4A90C4);
 
-  /* Gold accent */
-  --color-gold: #b8955a;
-  --color-gold-light: #d4ad72;
-  --color-gold-wash: #f0e6d4;
+  /* Accent family (was "gold") — driven by brand_accent */
+  --color-gold: var(--brand-accent, #b8955a);
+  --color-gold-light: var(--brand-accent-light, #d4ad72);
+  --color-gold-wash: var(--brand-accent-wash, #f0e6d4);
 
-  /* Neutrals */
-  --color-cream: #f5f2eb;
-  --color-cream-warm: #eee9df;
-  --color-ink: #1a1a18;
-  --color-mist: #8a8a80;
-  --color-mist-light: #b3b0a8;
-  --color-rule: #ddd8ce;
+  /* Neutrals — driven by brand_background / brand_neutral / brand_secondary */
+  --color-cream: var(--brand-background, #f5f2eb);
+  --color-cream-warm: var(--brand-background-warm, #eee9df);
+  --color-ink: var(--brand-neutral, #1a1a18);
+  --color-mist: var(--brand-secondary, #8a8a80);
+  --color-mist-light: var(--brand-secondary-light, #b3b0a8);
+  --color-rule: var(--brand-rule, #ddd8ce);
 
-  /* Typography */
-  --font-heading: 'Fraunces', Georgia, serif;
+  /* Typography — driven by brand_font_heading */
+  --font-heading: var(--brand-font-heading, 'Fraunces', Georgia, serif);
+
+  /* Content measure — driven by brand_max_width */
+  --brand-measure: var(--brand-max-width, 1100px);
 }
 
 @layer base {
   body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--brand-font-body, 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -34,7 +43,7 @@
 
 @layer utilities {
   .font-display {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: var(--brand-font-heading, 'Fraunces', Georgia, serif);
   }
 }
 
