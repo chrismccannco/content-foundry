@@ -97,8 +97,8 @@
 }
 .fn-wrap { max-width: var(--fn-measure); margin: 0 auto; padding: 0 36px; }
 
-/* top nav */
-.fn-nav { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 28px 36px; }
+/* top nav — logo left, links right (space-between), aligned to the content measure */
+.fn-nav { display: flex; align-items: center; justify-content: space-between; gap: 28px; max-width: var(--fn-measure); margin: 0 auto; padding: 28px 36px; }
 .fn-logo { width: 34px; height: 34px; background: var(--fn-ink); color: var(--fn-bg);
   font-family: var(--fn-sans); font-weight: 600; font-size: 13px; letter-spacing: 0.5px;
   display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
