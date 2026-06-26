@@ -34,9 +34,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       {Array.isArray(post.sections) && post.sections.map((sec, i) => (
         <section key={i}>
           {sec.heading && <h3>{sec.heading}</h3>}
-          {(Array.isArray(sec.body) ? sec.body : [sec.body]).filter(Boolean).map((para, j) => (
-            <p key={j}>{para}</p>
-          ))}
+          <div dangerouslySetInnerHTML={{ __html: Array.isArray(sec.body) ? sec.body.join("") : String(sec.body || "") }} />
         </section>
       ))}
       <p className="fn-more"><Link href="/blog">← All Field Notes</Link></p>
