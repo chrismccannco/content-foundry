@@ -1,104 +1,67 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./components/Header";
-import MobileStickyCTA from "./components/MobileStickyCTA";
+import SiteNav from "./components/SiteNav";
+import SiteFooter from "./components/SiteFooter";
 import PageViewTracker from "./components/PageViewTracker";
 import AnalyticsScripts from "./components/AnalyticsScripts";
+import { getSettings } from "@/lib/cms";
 
-export const metadata: Metadata = {
-  title: {
-    default: "NutraGLP — Natural GLP-1 Amplification",
-    template: "%s | NutraGLP",
-  },
-  description:
-    "Slim SHOT is a daily liquid formula that amplifies your body's own GLP-1 production. No needle. No prescription. No catch. $155/mo.",
-  keywords: [
-    "natural GLP-1 supplement",
-    "GLP-1 without prescription",
-    "natural GLP-1 agonist",
-    "nanoemulsion GLP-1",
-    "DPP-4 inhibitor supplement",
-    "natural weight management",
-    "natural GLP-1 amplification",
-  ],
-  alternates: {
-    canonical: "https://nutraglp.com",
-  },
-  openGraph: {
-    title: "NutraGLP — Natural GLP-1 Amplification",
-    description:
-      "A patent-pending drinkable nanoemulsion that amplifies your body's natural GLP-1 and GIP production. No prescription. No injection. 13 metabolic pathways.",
-    url: "https://nutraglp.com",
-    siteName: "NutraGLP",
-    type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "NutraGLP — Natural GLP-1 Amplification",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "NutraGLP — Natural GLP-1 Amplification",
-    description:
-      "A patent-pending drinkable nanoemulsion that amplifies your body's natural GLP-1 and GIP production.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  metadataBase: new URL("https://nutraglp.com"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const s = await getSettings().catch(() => ({} as Record<string, string>));
+  const name = s.site_name || "Chris McCann — Field Notes";
+  const description =
+    s.site_description ||
+    "Consciousness research. Leadership. The gap between what leaders do and what they're carrying when they do it.";
+  const base = s.site_url || "https://chrismccann.co";
+  return {
+    title: { default: name, template: `%s | ${s.site_name || "Field Notes"}` },
+    description,
+    metadataBase: new URL(base),
+    openGraph: { title: name, description, url: base, siteName: s.site_name || name, type: "website" },
+    twitter: { card: "summary_large_image", title: name, description },
+    robots: { index: true, follow: true },
+  };
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+/** Map site_settings brand_* values into :root custom properties (server-rendered, no flash). */
+function brandStyle(s: Record<string, string>): string {
+  const pairs: [string, string | undefined][] = [
+    ["--brand-background", s.brand_background],
+    ["--brand-neutral", s.brand_neutral],
+    ["--brand-secondary", s.brand_secondary],
+    ["--brand-rule", s.brand_rule],
+    ["--brand-accent", s.brand_accent],
+    ["--brand-font-heading", s.brand_font_heading ? `'${s.brand_font_heading}'` : undefined],
+    ["--brand-font-body", s.brand_font_body ? `'${s.brand_font_body}'` : undefined],
+    ["--brand-max-width", s.brand_max_width],
+  ];
+  const body = pairs.filter(([, v]) => v).map(([k, v]) => `${k}:${v};`).join("");
+  return `:root{${body}}`;
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const s = await getSettings().catch(() => ({} as Record<string, string>));
+  const fontHeading = (s.brand_font_heading || "DM Sans").replace(/ /g, "+");
+  const fontBody = (s.brand_font_body || "EB Garamond").replace(/ /g, "+");
+  const fontHref =
+    `https://fonts.googleapis.com/css2?family=${fontHeading}:wght@400;500;600;700` +
+    `&family=${fontBody}:ital,wght@0,400;0,500;1,400;1,500&display=swap`;
+
   return (
     <html lang="en">
       <head>
         <AnalyticsScripts />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href={fontHref} rel="stylesheet" />
+        <style dangerouslySetInnerHTML={{ __html: brandStyle(s) }} />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="bg-cream text-ink">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "NutraGLP",
-              url: "https://nutraglp.com",
-              logo: "https://nutraglp.com/apple-touch-icon.png",
-              description:
-                "NutraGLP develops patent-pending nanoemulsion supplements for natural GLP-1 amplification. Flagship product: Slim SHOT, a daily drinkable liquid formula.",
-              brand: {
-                "@type": "Brand",
-                name: "NutraGLP",
-              },
-              foundingDate: "2025",
-              sameAs: [
-                "https://www.linkedin.com/company/nutraglp",
-                "https://www.instagram.com/nutraglp",
-                "https://x.com/nutraglp",
-              ],
-            }),
-          }}
-        />
+      <body className="fn-site">
         <PageViewTracker />
-        <Header />
+        <SiteNav />
         {children}
-        <MobileStickyCTA />
+        <SiteFooter />
       </body>
     </html>
   );
