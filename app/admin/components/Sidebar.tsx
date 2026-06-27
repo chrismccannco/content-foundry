@@ -51,7 +51,8 @@ const navGroups: { label: string; items: NavItem[]; collapsible?: boolean }[] = 
     label: "Content",
     items: [
       { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-      { label: "Pages", href: "/admin/pages", icon: FileText },
+      { label: "Pages", href: "/admin/site-pages", icon: FileText },
+      { label: "Page Builder", href: "/admin/pages", icon: LayoutTemplate },
       { label: "Blog", href: "/admin/blog", icon: BookOpen },
       { label: "Products", href: "/admin/products", icon: Package },
       { label: "Testimonials", href: "/admin/testimonials", icon: Star },
