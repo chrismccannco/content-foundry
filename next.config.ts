@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
     return [
       { source: "/field-assessment", destination: "/field-assessment.html" },
       { source: "/field-assessment/", destination: "/field-assessment.html" },
+      { source: "/start", destination: "/start.html" },
+      { source: "/start/", destination: "/start.html" },
+      { source: "/links", destination: "/links.html" },
+      { source: "/links/", destination: "/links.html" },
+      { source: "/subscribe", destination: "/subscribe.html" },
+      { source: "/subscribe/", destination: "/subscribe.html" },
+    ];
+  },
+  async redirects() {
+    return [
+      { source: "/blog/the-numbers-were-fine", destination: "/blog/the-room-knew-first", permanent: true },
+      { source: "/field-notes/the-numbers-were-fine", destination: "/blog/the-room-knew-first", permanent: true },
     ];
   },
 };
