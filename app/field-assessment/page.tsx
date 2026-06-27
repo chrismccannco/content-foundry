@@ -25,7 +25,7 @@ export default async function FieldAssessment() {
     <main className="fn-wrap fn-article">
       <article dangerouslySetInnerHTML={{ __html: html }} />
       {formAction ? (
-        <p className="fn-more"><a href={formAction}>START THE ASSESSMENT →</a></p>
+        <p className="fn-more"><a href={formAction} target="_blank" rel="noopener noreferrer">START THE ASSESSMENT →</a></p>
       ) : (
         <p className="fn-empty">The interactive assessment is being migrated. Check back shortly.</p>
       )}

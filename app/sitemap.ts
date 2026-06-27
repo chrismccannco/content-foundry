@@ -1,87 +1,24 @@
-export const dynamic = "force-static";
 import type { MetadataRoute } from "next";
+import { getBlogPosts, getSettings } from "@/lib/cms";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://nutraglp.com";
+export const dynamic = "force-dynamic";
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/slim-shot`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/science`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/natural-glp1-amplification`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/nanoemulsion-vs-capsules`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/natural-dpp4-inhibition`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/endogenous-vs-exogenous-glp1`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/investors`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-  ];
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const s = await getSettings().catch(() => ({} as Record<string, string>));
+  const base = (s.site_url || "https://chrismccann.co").replace(/\/$/, "");
+  const routes = ["", "/blog", "/about", "/retreats", "/field-assessment", "/privacy"];
+  const staticEntries: MetadataRoute.Sitemap = routes.map((r) => ({
+    url: `${base}${r}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: r === "" ? 1 : 0.7,
+  }));
+  const posts = await getBlogPosts().catch(() => []);
+  const postEntries: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: `${base}/blog/${p.slug}`,
+    lastModified: p.date ? new Date(p.date) : new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+  return [...staticEntries, ...postEntries];
 }

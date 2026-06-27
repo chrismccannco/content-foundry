@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPage } from "@/lib/cms";
 import BlockRenderer from "../components/blocks/BlockRenderer";
-import Footer from "../components/Footer";
 
 export const dynamic = "force-dynamic";
 
@@ -30,11 +29,11 @@ export async function generateMetadata({
   return {
     title: seoTitle,
     description: seoDescription,
-    alternates: { canonical: `https://nutraglp.com/${slug}` },
+    alternates: { canonical: `/${slug}` },
     openGraph: {
       title: seoTitle,
       description: seoDescription,
-      url: `https://nutraglp.com/${slug}`,
+      url: `/${slug}`,
       ...(page.og_image
         ? { images: [{ url: page.og_image, width: 1200, height: 630, alt: seoTitle }] }
         : {}),
@@ -78,7 +77,6 @@ export default async function CMSPage({
           )}
         </section>
       )}
-      <Footer />
     </main>
   );
 }
