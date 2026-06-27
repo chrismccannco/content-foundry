@@ -55,24 +55,6 @@ const PAGE_CONFIG: Record<string, PageDef> = {
     live: "/retreats",
     groups: [{ fields: [{ type: "richtext", key: "page_retreats", label: "Page content" }] }],
   },
-  "field-assessment": {
-    title: "Field Assessment",
-    live: "/field-assessment",
-    groups: [
-      {
-        fields: [
-          { type: "richtext", key: "page_field_assessment", label: "Intro content" },
-          {
-            type: "text",
-            key: "assessment_action",
-            label: "Assessment link",
-            help: "Paste the web address of your assessment tool. The Start button appears and opens it in a new tab. Leave blank to hide it.",
-            placeholder: "https://…",
-          },
-        ],
-      },
-    ],
-  },
 };
 
 export default function SitePageEditor() {

@@ -8,7 +8,6 @@ const PAGES = [
   { key: "home", title: "Home Page", desc: "Your front page — heading, intro paragraphs, and the call to action.", live: "/" },
   { key: "about", title: "About", desc: "The About page.", live: "/about" },
   { key: "retreats", title: "Retreats", desc: "The Retreats page.", live: "/retreats" },
-  { key: "field-assessment", title: "Field Assessment", desc: "The Field Assessment intro and the Start link.", live: "/field-assessment" },
 ];
 
 export default function SitePagesIndex() {
