@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getSettings, getBlogPosts } from "@/lib/cms";
 
+export const dynamic = "force-dynamic";
+
 const DEFAULT = {
   heading: "Chris McCann",
   subhead: "Fifteen years leading sales teams.\nStill figuring it out.",

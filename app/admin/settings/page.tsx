@@ -12,6 +12,25 @@ const generalFields = [
   { key: "copyright", label: "Copyright" },
 ];
 
+const homeFields = [
+  { key: "home_heading", label: "Heading" },
+  { key: "home_subhead", label: "Subhead (each line shows on its own row)", multiline: true },
+  { key: "home_eyebrow", label: "Eyebrow line (above the email box)" },
+  { key: "home_body", label: "Intro paragraphs — HTML, wrap each in <p>…</p>", multiline: true, rows: 8 },
+  { key: "newsletter_action", label: "Newsletter form action URL", placeholder: "/api/subscribe" },
+  { key: "cta_eyebrow", label: "Footer CTA — eyebrow", placeholder: "The Field Assessment" },
+  { key: "cta_body", label: "Footer CTA — body", multiline: true },
+  { key: "cta_label", label: "Footer CTA — button label", placeholder: "Take the assessment" },
+  { key: "cta_href", label: "Footer CTA — link", placeholder: "/field-assessment" },
+];
+
+const pageFields = [
+  { key: "page_about", label: "About page — HTML", multiline: true, rows: 10 },
+  { key: "page_retreats", label: "Retreats page — HTML", multiline: true, rows: 10 },
+  { key: "page_field_assessment", label: "Field Assessment intro — HTML", multiline: true, rows: 8 },
+  { key: "assessment_action", label: "Assessment link (Start button; opens in new tab)", placeholder: "https://…" },
+];
+
 const cmsBrandingFields = [
   { key: "cms_name", label: "Admin display name", placeholder: "ContentFoundry" },
   { key: "cms_logo_letter", label: "Logo letter (single character)", placeholder: "C" },
@@ -76,7 +95,7 @@ export default function SettingsAdmin() {
     setSettings((prev) => ({ ...prev, [key]: value }));
   };
 
-  const renderField = (f: { key: string; label: string; multiline?: boolean; password?: boolean; placeholder?: string }) => (
+  const renderField = (f: { key: string; label: string; multiline?: boolean; password?: boolean; placeholder?: string; rows?: number }) => (
     <div key={f.key} className="mb-4 last:mb-0">
       <label className="block text-xs font-medium text-neutral-500 mb-1">
         {f.label}
@@ -85,7 +104,7 @@ export default function SettingsAdmin() {
         <textarea
           value={settings[f.key] || ""}
           onChange={(e) => update(f.key, e.target.value)}
-          rows={3}
+          rows={f.rows || 3}
           placeholder={f.placeholder}
           className="w-full px-3 py-2 border border-neutral-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
         />
@@ -126,6 +145,20 @@ export default function SettingsAdmin() {
 
         <FormSection title="General">
           {generalFields.map(renderField)}
+        </FormSection>
+
+        <FormSection title="Home Page">
+          {homeFields.map(renderField)}
+          <p className="text-xs text-neutral-400 mt-2">
+            The front page. Changes go live immediately.
+          </p>
+        </FormSection>
+
+        <FormSection title="Pages">
+          {pageFields.map(renderField)}
+          <p className="text-xs text-neutral-400 mt-2">
+            About, Retreats, and Field Assessment. HTML — headings (&lt;h2&gt;), paragraphs (&lt;p&gt;), links (&lt;a href&gt;).
+          </p>
         </FormSection>
 
         <FormSection title="Disclaimers">
