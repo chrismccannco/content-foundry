@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getSettings } from "@/lib/cms";
 
+export const dynamic = "force-dynamic";
+
 const DEFAULT_HTML = `
 <h1>Private Retreats</h1>
 <p class="fn-lead">With Chris McCann and Dr. Carlos Warter.</p>

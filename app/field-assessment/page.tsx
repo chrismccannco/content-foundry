@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getSettings } from "@/lib/cms";
 
+export const dynamic = "force-dynamic";
+
 const DEFAULT_HTML = `
 <h1>The Field Assessment</h1>
 <p class="fn-lead">Eighteen questions. Five minutes. Two parts.</p>

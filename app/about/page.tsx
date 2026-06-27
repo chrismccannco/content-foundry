@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getSettings } from "@/lib/cms";
 
+export const dynamic = "force-dynamic";
+
 const DEFAULT_HTML = `
 <h1>The short version</h1>
 <p>I've spent twenty-five years leading teams. The last fifteen in SaaS, building and scaling go-to-market organizations in emerging tech categories. Before that, I managed restaurants. Opened Boston Chicken stores in the mid-nineties as a twenty-year-old. Ran a Hooters, where fifty front-of-house staff and fifty kitchen workers taught me more about group dynamics than any psychology class would. The job was the same one I have now, just without the laptops. Read the room. Set the tone.</p>
