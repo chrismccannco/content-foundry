@@ -421,6 +421,17 @@ body {
   .progress-bar { transition: none !important; }
   .result-dimension-bar-fill { transition: none !important; }
 }
+
+/* ===== Seamless with site chrome ===== */
+.back-to-site { display: none; }
+.fn-sitenav { width: 100%; max-width: 620px; margin: 0 auto; padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.fn-sitenav .fn-logo { width: 34px; height: 34px; background: var(--black); color: var(--white); font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 0.5px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 2px; }
+.fn-sitenav .fn-links { display: flex; gap: 26px; }
+.fn-sitenav .fn-links a { font-family: var(--sans); font-size: 15px; color: var(--black); text-decoration: none; }
+.fn-sitenav .fn-links a:hover { color: var(--accent); }
+.assessment-container { justify-content: flex-start; align-items: stretch; max-width: 620px; padding: 40px 36px 4rem; }
+.intro-title { font-size: 40px; line-height: 1.12; letter-spacing: -1px; text-transform: none; margin-bottom: 0.4rem; }
+@media (max-width: 640px) { .fn-sitenav .fn-links { gap: 16px; font-size: 14px; } }
 </style>
 <script type="application/ld+json">
 {
@@ -478,7 +489,15 @@ body {
 <a class="skip-link" href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;">Skip to content</a>
 
 <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Assessment progress"></div>
-<a href="/" class="back-to-site">&larr; chrismccann.co</a>
+<nav class="fn-sitenav">
+  <a href="/" class="fn-logo" aria-label="Home">CM</a>
+  <span class="fn-links">
+    <a href="/blog">Field Notes</a>
+    <a href="/about">About</a>
+    <a href="/retreats">Retreats</a>
+    <a href="/field-assessment">Field Assessment</a>
+  </span>
+</nav>
 
 <main id="main-content">
 <div class="assessment-container">
