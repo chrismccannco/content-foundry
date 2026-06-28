@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getSettings, getBlogPosts } from "@/lib/cms";
+import JsonLd from "@/app/components/JsonLd";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +18,10 @@ const DEFAULT = {
   cta_href: "/field-assessment",
 };
 
+export async function generateMetadata(): Promise<Metadata> {
+  return { alternates: { canonical: "/" } };
+}
+
 export default async function Home() {
   const s = await getSettings().catch(() => ({} as Record<string, string>));
   const posts = (await getBlogPosts().catch(() => [])).slice(0, 4);
@@ -25,8 +31,46 @@ export default async function Home() {
   const eyebrow = s.home_eyebrow || DEFAULT.eyebrow;
   const body = s.home_body || DEFAULT.body;
 
+  const base = (s.site_url || "https://chrismccann.co").replace(/\/$/, "");
+  const sameAs = [
+    s.social_linkedin || "https://www.linkedin.com/in/chrismccannco/",
+    s.social_instagram || "https://www.instagram.com/chrismccann.co/",
+    s.social_twitter || s.social_x || "https://x.com/chrismccanco",
+  ].filter(Boolean);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": base + "/#person",
+        name: heading,
+        url: base,
+        description: eyebrow,
+        jobTitle: "Writer & sales leader",
+        sameAs,
+      },
+      {
+        "@type": "WebSite",
+        "@id": base + "/#website",
+        url: base,
+        name: s.site_name || "Field Notes",
+        description: s.site_description || eyebrow,
+        publisher: { "@id": base + "/#person" },
+        inLanguage: "en",
+      },
+      {
+        "@type": "Blog",
+        "@id": base + "/blog#blog",
+        url: base + "/blog",
+        name: "Field Notes",
+        author: { "@id": base + "/#person" },
+      },
+    ],
+  };
+
   return (
     <main className="fn-wrap">
+      <JsonLd data={jsonLd} />
       <section className="fn-hero">
         <h1>{heading}</h1>
         <div className="fn-subhead">

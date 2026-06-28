@@ -26,4 +26,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://nutraglp.com/sitemap.xml
+Sitemap: https://chrismccann.co/sitemap.xml
