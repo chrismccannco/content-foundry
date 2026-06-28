@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSettings().catch(() => ({} as Record<string, string>));
   return {
+    alternates: { canonical: "/blog" },
     title: s.blog_title || "Field Notes",
     description: s.blog_description ||
       "Consciousness. Leadership. The gap between them. Twice a month.",

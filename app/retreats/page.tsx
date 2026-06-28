@@ -23,6 +23,7 @@ const DEFAULT_HTML = `
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSettings().catch(() => ({} as Record<string, string>));
   return {
+    alternates: { canonical: "/retreats" },
     title: "Retreats",
     description: s.page_retreats_description ||
       "Private leadership retreats with Chris McCann and Dr. Carlos Warter. Small group. 3-5 days. By application.",

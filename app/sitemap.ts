@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const s = await getSettings().catch(() => ({} as Record<string, string>));
   const base = (s.site_url || "https://chrismccann.co").replace(/\/$/, "");
-  const routes = ["", "/blog", "/about", "/retreats", "/field-assessment", "/privacy"];
+  const routes = ["", "/blog", "/about", "/retreats", "/field-assessment", "/start", "/subscribe", "/privacy"];
   const staticEntries: MetadataRoute.Sitemap = routes.map((r) => ({
     url: `${base}${r}`,
     lastModified: new Date(),

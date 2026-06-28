@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import JsonLd from "@/app/components/JsonLd";
 import Link from "next/link";
 import { getSettings } from "@/lib/cms";
 
@@ -20,6 +21,7 @@ const DEFAULT_HTML = `
 export async function generateMetadata(): Promise<Metadata> {
   const s = await getSettings().catch(() => ({} as Record<string, string>));
   return {
+    alternates: { canonical: "/about" },
     title: "About",
     description: s.page_about_description ||
       "Fifteen years leading corporate sales teams. Co-authoring a book on consciousness and leadership with Dr. Carlos Warter.",
@@ -28,9 +30,26 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function About() {
   const s = await getSettings().catch(() => ({} as Record<string, string>));
+  const base = (s.site_url || "https://chrismccann.co").replace(/\/$/, "");
+  const aboutLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: "Chris McCann",
+      url: base,
+      jobTitle: "Writer & sales leader",
+      sameAs: [
+        s.social_linkedin || "https://www.linkedin.com/in/chrismccannco/",
+        s.social_instagram || "https://www.instagram.com/chrismccann.co/",
+        s.social_twitter || s.social_x || "https://x.com/chrismccanco",
+      ],
+    },
+  };
   const html = s.page_about || DEFAULT_HTML;
   return (
     <main className="fn-wrap fn-article">
+      <JsonLd data={aboutLd} />
       <article dangerouslySetInnerHTML={{ __html: html }} />
       <p className="fn-more"><Link href="/field-assessment">TAKE THE ASSESSMENT →</Link></p>
     </main>
