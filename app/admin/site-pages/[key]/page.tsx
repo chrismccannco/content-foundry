@@ -28,19 +28,19 @@ const PAGE_CONFIG: Record<string, PageDef> = {
     groups: [
       {
         fields: [
-          { type: "text", key: "home_heading", label: "Heading" },
-          { type: "textarea", key: "home_subhead", label: "Subhead", help: "Each line shows on its own row.", rows: 2 },
-          { type: "text", key: "home_eyebrow", label: "Eyebrow line (the small line above the email box)" },
-          { type: "richtext", key: "home_body", label: "Intro paragraphs" },
+          { type: "text",     key: "home_heading", label: "Heading" },
+          { type: "textarea", key: "home_subhead",  label: "Subhead", help: "Each line shows on its own row.", rows: 2 },
+          { type: "text",     key: "home_eyebrow",  label: "Eyebrow line (the small line above the email box)" },
+          { type: "richtext", key: "home_body",     label: "Intro paragraphs" },
         ],
       },
       {
         title: "Footer call to action",
         fields: [
-          { type: "text", key: "cta_eyebrow", label: "Small heading", placeholder: "The Field Assessment" },
-          { type: "textarea", key: "cta_body", label: "Text", rows: 2 },
-          { type: "text", key: "cta_label", label: "Button label", placeholder: "Take the assessment" },
-          { type: "text", key: "cta_href", label: "Button link", placeholder: "/field-assessment" },
+          { type: "text",     key: "cta_eyebrow", label: "Small heading",  placeholder: "The Field Assessment" },
+          { type: "textarea", key: "cta_body",    label: "Text",           rows: 2 },
+          { type: "text",     key: "cta_label",   label: "Button label",   placeholder: "Take the assessment" },
+          { type: "text",     key: "cta_href",    label: "Button link",    placeholder: "/field-assessment" },
         ],
       },
     ],
@@ -55,56 +55,6 @@ const PAGE_CONFIG: Record<string, PageDef> = {
     live: "/retreats",
     groups: [{ fields: [{ type: "richtext", key: "page_retreats", label: "Page content" }] }],
   },
-,
-  links: {
-    title: "Links",
-    live: "/links",
-    groups: [
-      {
-        title: "Profile",
-        fields: [
-          { type: "text", key: "links_bio", label: "Bio line", placeholder: "Consciousness. Leadership. The gap between them." },
-        ],
-      },
-      {
-        title: "Card 1 — update when you publish a new essay",
-        fields: [
-          { type: "text", key: "links_card_1_label", label: "Label", placeholder: "Latest Field Note" },
-          { type: "text", key: "links_card_1_title", label: "Title", placeholder: "The Judge" },
-          { type: "text", key: "links_card_1_href",  label: "URL",   placeholder: "/blog/the-judge/" },
-        ],
-      },
-      {
-        title: "Card 2",
-        fields: [
-          { type: "text", key: "links_card_2_label", label: "Label", placeholder: "Free — 5 minutes" },
-          { type: "text", key: "links_card_2_title", label: "Title", placeholder: "The Field Assessment" },
-          { type: "text", key: "links_card_2_href",  label: "URL",   placeholder: "/field-assessment" },
-        ],
-      },
-      {
-        title: "Card 3",
-        fields: [
-          { type: "text", key: "links_card_3_label", label: "Label", placeholder: "Biweekly" },
-          { type: "text", key: "links_card_3_title", label: "Title", placeholder: "Subscribe to Field Notes" },
-          { type: "text", key: "links_card_3_href",  label: "URL",   placeholder: "/subscribe" },
-        ],
-      },
-    ],
-  },
-  subscribe: {
-    title: "Subscribe",
-    live: "/subscribe",
-    groups: [
-      {
-        fields: [
-          { type: "text", key: "subscribe_tagline", label: "Tagline",        placeholder: "The room shifts when you walk in. You know this." },
-          { type: "text", key: "subscribe_note",    label: "Secondary note", placeholder: "Twice a month." },
-        ],
-      },
-    ],
-  },
-,
   links: {
     title: "Links",
     live: "/links",
