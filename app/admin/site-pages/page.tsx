@@ -7,16 +7,16 @@ import Breadcrumbs from "../components/Breadcrumbs";
 type Page = { key: string; title: string; desc: string; live: string };
 
 const EDITABLE: Page[] = [
-  { key: "home", title: "Home Page", desc: "Your front page — heading, intro paragraphs, and the call to action.", live: "/" },
-  { key: "about", title: "About", desc: "The About page.", live: "/about" },
-  { key: "retreats", title: "Retreats", desc: "The Retreats page.", live: "/retreats" },
+  { key: "home",      title: "Home Page", desc: "Your front page — heading, intro paragraphs, and the call to action.", live: "/" },
+  { key: "about",     title: "About",     desc: "The About page.",                                                      live: "/about" },
+  { key: "retreats",  title: "Retreats",  desc: "The Retreats page.",                                                   live: "/retreats" },
+  { key: "links",     title: "Links",     desc: "Your link-in-bio page — bio, cards, and URLs.",                        live: "/links" },
+  { key: "subscribe", title: "Subscribe", desc: "The standalone subscribe page — tagline and note.",                    live: "/subscribe" },
 ];
 
 const DESIGNED: Page[] = [
-  { key: "field-assessment", title: "Field Assessment", desc: "The interactive 18-question assessment.", live: "/field-assessment" },
-  { key: "start", title: "Start Here", desc: "The newsletter / assessment / book landing page.", live: "/start" },
-  { key: "links", title: "Links", desc: "Your link-in-bio page.", live: "/links" },
-  { key: "subscribe", title: "Subscribe", desc: "The standalone subscribe page.", live: "/subscribe" },
+  { key: "field-assessment", title: "Field Assessment", desc: "The interactive 18-question assessment. Changed in design, not the text editor.", live: "/field-assessment" },
+  { key: "start",            title: "Start Here",       desc: "The newsletter / assessment / book landing page.",                               live: "/start" },
 ];
 
 function Card({ p, editable }: { p: Page; editable: boolean }) {
@@ -62,7 +62,7 @@ export default function SitePagesIndex() {
 
       <div className="mt-10 mb-3">
         <h2 className="text-sm font-semibold text-neutral-900">Designed pages</h2>
-        <p className="text-xs text-neutral-400 mt-1">Built as fixed templates — the interactive assessment and custom landing pages. Open them here; these are changed in the design, not the text editor.</p>
+        <p className="text-xs text-neutral-400 mt-1">Built as fixed templates. Open them here; changes require a code update.</p>
       </div>
       <div className="grid sm:grid-cols-2 gap-3">
         {DESIGNED.map((p) => (<Card key={p.key} p={p} editable={false} />))}
