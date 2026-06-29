@@ -10,12 +10,7 @@ const nextConfig: NextConfig = {
       { source: "/field-assessment", destination: "/field-assessment.html" },
       { source: "/field-assessment/", destination: "/field-assessment.html" },
       { source: "/start", destination: "/start.html" },
-      { source: "/start/", destination: "/start.html" },
-      { source: "/links", destination: "/links.html" },
-      { source: "/links/", destination: "/links.html" },
-      { source: "/subscribe", destination: "/subscribe.html" },
-      { source: "/subscribe/", destination: "/subscribe.html" },
-    ];
+      { source: "/start/", destination: "/start.html" },      { source: "/subscribe", destination: "/subscribe.html" },    ];
   },
   async redirects() {
     return [
